@@ -67,3 +67,14 @@ Component가 어디 있는지 위치를 알려주기 위한 것으로 자바 스
 |Autowiring|@Autowired로 필드에 직접, 세터, 생성자로 주입 가능|클래스를 생성할 Bean에 등록시키고자 하는 클래스를 직접 생성하거나 파라미터로 받는다.|
 |누가 만드는지|Spring framework|생성자 빈을 직접 정의해야한다.|
 |언제 쓰는게 좋을까?|직접 작성한 클래스를 빈에 등록시키려 할때|1. 의존성을 주입할때 특정 로직을 실행시켜주고 싶을때 2. 내가 만든게 아닌 다른 사람의 로직을 사용할때|
+외부 라이브러리에서 사용되는 클래스를 Bean에 등록시켜줄 때는 해당 클래스는 외부에 있기 때문에 @Component를 통해 등록시킬 수 없다. 그렇기 때문에 해당 클래스를 Bean에 등록시키기 위해 @Bean을 이용한다.
+```
+@SpringConfiguration
+public class Configuration{
+	@Bean
+    public outerClass getOuterClass(){
+    	//custom logic
+    	return new outerClass();
+    }
+}
+```
